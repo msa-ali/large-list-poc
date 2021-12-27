@@ -1,0 +1,14 @@
+.listContainer {
+    width: 800px;
+    height: 200px;
+    display: flex;
+    background-color: lightgrey;
+    overflow-y: auto;
+  }
+
+  .listElement {
+    flex-shrink: 0;
+    height: 90%;
+    width: 200px;
+    margin: 10px;
+  }
