@@ -36,7 +36,7 @@ const ListElement = (props) => {
     // }, [visible]);
 
     React.useEffect(() => {
-        console.log(props);
+        // console.log(props);
         intersectionObserver = new IntersectionObserver(onVisibilityChange, containerRef.current);
         intersectionObserver.observe(elementRef.current);
         return () => {
@@ -52,15 +52,34 @@ const ListElement = (props) => {
     </div>
 }
 
+const actualData = generateFakeData();
+
 export const ListContainer = () => {
     const containerRef = React.useRef();
-    const [data, setData] = React.useState(generateFakeData())
+    const flag = React.useRef();
+    const [data, setData] = React.useState(actualData.slice(0,10))
+    const [isFlagVisible, setIsFlagVisible] = React.useState(false);
+
+    const onVisibilityChange = ([entry]) => {
+        if(entry.isIntersecting) {
+            setData((data) => [...data, actualData.slice(data.length, data.length + 10)])
+        }
+    }
+
+    React.useEffect(() => {
+        const intersectionObserver = new IntersectionObserver(onVisibilityChange, containerRef.current);
+        intersectionObserver.observe(flag.current);
+        return () => {
+            intersectionObserver.disconnect()
+        }
+    }, [])
 
     return (
         <div className="listContainer">
             {data.map(val => {
                 return <ListElement containerRef={containerRef} {...val} />
             })}
+            <div ref={flag}>Lodu</div>
         </div>
     );
 };
