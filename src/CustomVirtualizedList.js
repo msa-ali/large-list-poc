@@ -29,6 +29,12 @@ const ListElement = (props) => {
         setVisible(entry.isIntersecting)
     }
 
+    // React.useEffect(() => {
+    //     if(!visible) {
+    //         elementRef.current.style.display ="none"
+    //     }
+    // }, [visible]);
+
     React.useEffect(() => {
         console.log(props);
         intersectionObserver = new IntersectionObserver(onVisibilityChange, containerRef.current);

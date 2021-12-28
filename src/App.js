@@ -6,6 +6,7 @@ import SelectionDialog from './Dialog';
 import OptimisedDialog from './OptimisedDialog';
 import DialogWithGrid from './DialogWithGrid';
 import {ListContainer} from "./CustomVirtualizedList";
+import MultiColumnLayout from './MultiColumnLayout';
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -46,6 +47,13 @@ function App() {
       />
       <br /> */}
       <ListContainer />
+      <br />
+      <br />
+      <br />
+      <MultiColumnLayout />
+      <br />
+      <br />
+      <br />
       <br />
       <Button variant="outlined" onClick={() => setOpenGrid(true)}>
         Open Optimized dialog
